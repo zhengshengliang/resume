@@ -3,6 +3,7 @@
   <head>
     <title>阿亮的个人简历</title>
     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="loading.css">
     <script src="//at.alicdn.com/t/font_610588_12z682kyga05dn29.js"></script>
     <style type="text/css">
       .icon {
@@ -14,6 +15,10 @@
     </style>
   </head>
   <body>
+    <div id=siteWelcome class="site-welcome active">
+      <div class="loading"></div>
+    </div>
+    
     <div class="top-nav-bar">
       <div class="nav-bar-inner clearfix">
         <a class="logo" href="#" alt="logo">
@@ -193,5 +198,8 @@
 
       <!--</section>-->
     </main>
+    <script type="text/javascript">
+      siteWelcome.classList.remove('active');
+    </script>
   </body>
 </html>
