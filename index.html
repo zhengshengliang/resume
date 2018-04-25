@@ -24,12 +24,12 @@
         <a class="logo" href="#" alt="logo">
           <span class="rs">RS</span><span class="card">card</span>
         </a>
-        <nav>
+        <nav class="menu">
           <ul class="clearfix">
-            <li><a href="#">关于</a></li>
-            <li><a href="#">技能</a></li>
+            <li><a href="#about">关于</a></li>
+            <li><a href="#skill">技能</a></li>
             <li>
-              <a class="menuSlider" href="#">作品</a>
+              <a class="menuSlider" href="#works">作品</a>
               <ul class="submenu">
                 <li>作品1</li>
                 <li>作品2</li>
@@ -58,7 +58,7 @@
     </div>
 
     <main>
-      <div class="user-card">
+      <div class="user-card" id="about">
         <div class="picture-text clearfix">
           <div class="picture">
             <img src="./images/avatar.jpg" alt="头像">
@@ -120,7 +120,7 @@
         <br> 技能：前端开发，vue 开发，react 开发
       </p>
 
-      <section class="skills">
+      <section class="skills" id="skill">
         <h2>技能</h2>
         <ol class="clearfix">
           <li>
@@ -173,44 +173,46 @@
           </li>
         </ol>
       </section>
-      <!--<section class="portfolio">-->
-        <!--<h2>作品集</h2>-->
-        <!--<nav>-->
-          <!--<ol class="clearfix">-->
-            <!--<li id="portfolio1">所有</li>-->
-            <!--<li id="portfolio2">框架</li>-->
-            <!--<li id="portfolio3">原生JS&amp;CSS</li>-->
-          <!--</ol>-->
-          <!--<div id="portfolioBar" class="bar state-1">-->
-            <!--<div class="bar-inner"></div>-->
-          <!--</div>-->
-        <!--</nav>-->
-        <!--<script>-->
-            <!--portfolio1.onclick= function(){-->
-                <!--portfolioBar.className = 'bar state-1'-->
-            <!--}-->
-            <!--portfolio2.onclick= function(){-->
-                <!--portfolioBar.className = 'bar state-2'-->
-            <!--}-->
-            <!--portfolio3.onclick= function(){-->
-                <!--portfolioBar.className = 'bar state-3'-->
-            <!--}-->
-        <!--</script>-->
+
+        <section class="portfolio" id="siteWorks">
+    <h2>作品集</h2>
+    <nav>
+      <ol class="clearfix">
+        <li id="portfolio1">所有</li>
+        <li id="portfolio2">框架</li>
+        <li id="portfolio3">原生JS&amp;CSS</li>
+      </ol>
+      <div id="portfolioBar" class="bar state-1">
+        <div class="bar-inner"></div>
+      </div>
+    </nav>
+    <script>
+      portfolio1.onclick= function(){
+        portfolioBar.className = 'bar state-1'
+      }
+      portfolio2.onclick= function(){
+        portfolioBar.className = 'bar state-2'
+      }
+      portfolio3.onclick= function(){
+        portfolioBar.className = 'bar state-3'
+      }
+    </script>
 
 
-        <!--<div class="works" style="height: 597px;">-->
-          <!--<div class="big" style="top: 0; left: 0;">-->
-            <!--<img src="./img/1.jpg" alt="作品1">-->
-          <!--</div>-->
-          <!--<div class="small" style="top: 0; left: 645px;">-->
-            <!--<img src="./img/2.jpg" alt="作品2">-->
-          <!--</div>-->
-          <!--<div class="small" style="top: 312px; left: 645px;">-->
-            <!--<img src="./img/3.jpg" alt="作品3">-->
-          <!--</div>-->
-        <!--</div>-->
+    <div class="works" style="height: 597px;">
+      <div class="big" style="top: 0; left: 0;">
+        <img src="./img/1.jpg" alt="作品1">
+      </div>
+      <div class="small" style="top: 0; left: 645px;">
+        <img src="./img/2.jpg" alt="作品2">
+      </div>
+      <div class="small" style="top: 312px; left: 645px;">
+        <img src="./img/3.jpg" alt="作品3">
+      </div>
+    </div>
 
-      <!--</section>-->
+  </section>
+
     </main>
     <script type="text/javascript">
       window.setTimeout(() => {
@@ -230,17 +232,38 @@
       for (let i = 0; i < sliders.length; i++) {
         sliders[i].onmouseenter = (e) => {
           const ct = e.currentTarget;
-          let ns = ct.nextSibling;
-          while (ns && ns.nodeType == Node.TEXT_NODE) {
+          let ns = ct.nextSibling; // 获取a后面的ul
+          while (ns && ns.tagName !== 'UL') { //这里判断为大写的ul // ns && ns.nodeType == Node.TEXT_NODE
+            console.log(ns.tagName);
             ns = ns.nextSibling;
           }
           console.log(ns);
+          ns.classList.add('active');
         }
 
         sliders[i].onmouseleave = () => {
-          console.log('leave');
+
         }
       }
+
+      let aTags = document.querySelectorAll('nav.menu > ul > li > a');
+      for (let i = 0; i < aTags.length; i++) {
+          aTags[i].onclick  = (e) => {
+              e.preventDefault(); // 1. 阻止默认动作
+              let a = e.currentTarget; // 2. 获取a标签  <a href="#about">关于</a>
+              console.log(a);
+              let b = a.getAttribute('href'); // 3. 获取a标签上的href => #about
+              // console.log(b);
+              let element = document.querySelector(b); // 根据href得到我们的元素
+              // let rect = element.getBoundingClientRect().top;
+              let top = element.offsetTop; // 得到element距离上方的距离
+              console.log(top);
+              window.scrollTo(0, top - 80);
+              // console.log(rect);
+              // console.log(element);
+          }
+      }
+
 
     </script>
   </body>
