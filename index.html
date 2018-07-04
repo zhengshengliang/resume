@@ -2,8 +2,9 @@
 <html>
   <head>
     <title>阿亮的个人简历</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/css/swiper.min.css">
     <link rel="stylesheet" href="style.css">
-     <link rel="stylesheet" href="loading.css">
+    <link rel="stylesheet" href="loading.css">
     <script src="//at.alicdn.com/t/font_610588_12z682kyga05dn29.js"></script>
     <style type="text/css">
       .icon {
@@ -22,7 +23,7 @@
     <div id="topNavBar" class="top-nav-bar">
       <div class="nav-bar-inner clearfix">
         <a class="logo" href="#" alt="logo">
-          <span class="rs">RS</span><span class="card">card</span>
+          <span class="rs">阿亮</span><span class="card">个人主页</span>
         </a>
         <nav class="menu">
           <ul class="clearfix">
@@ -30,19 +31,9 @@
             <li><a href="#skill">技能</a></li>
             <li>
               <a class="menuSlider" href="#works">作品</a>
-              <ul class="submenu">
-                <li>作品1</li>
-                <li>作品2</li>
-                <li>作品3</li>
-              </ul>
             </li>
             <li>
               <a class="menuSlider" href="#">博客</a>
-              <ul class="submenu">
-                <li>博客1</li>
-                <li>博客2</li>
-                <li>博客3</li>
-              </ul>
             </li>
             <li><a href="#">日历</a></li>
             <li><a href="#">联系方式</a></li>
@@ -58,7 +49,7 @@
     </div>
 
     <main>
-      <div class="user-card" id="about">
+      <div data-x class="user-card" id="about">
         <div class="picture-text clearfix">
           <div class="picture">
             <img src="./images/avatar.jpg" alt="头像">
@@ -104,10 +95,6 @@
               <use xlink:href="#icon-zhihu"></use>
             </svg>
           </a>
-          <!--<a href="#"><img src="#" alt="..."></a>-->
-          <!--<a href="#"><img src="#" alt="..."></a>-->
-          <!--<a href="#"><img src="#" alt="..."></a>-->
-          <!--<a href="#"><img src="#" alt="..."></a>-->
         </footer>
       </div>
 
@@ -116,11 +103,11 @@
       </p>
 
       <p class="selfIntroduction">
-        郑生亮， 前端工程师，现在在 上海哦加哦 工作。
-        <br> 技能：前端开发，vue 开发，react 开发
+        郑生亮， 前端工程师，现在在 上海哦加哦网络科技有限公司 工作<br>
+        旗下有著名品牌"猩便利"，布局新零售，无人货架行业。2018年6月获得蚂蚁金服战略投资。<br> 技能：前端开发，vue 开发，react 开发
       </p>
 
-      <section class="skills" id="skill">
+      <section data-x class="skills" id="skill">
         <h2>技能</h2>
         <ol class="clearfix">
           <li>
@@ -174,44 +161,41 @@
         </ol>
       </section>
 
-        <section class="portfolio" id="siteWorks">
-    <h2>作品集</h2>
-    <nav>
-      <ol class="clearfix">
-        <li id="portfolio1">所有</li>
-        <li id="portfolio2">框架</li>
-        <li id="portfolio3">原生JS&amp;CSS</li>
-      </ol>
-      <div id="portfolioBar" class="bar state-1">
-        <div class="bar-inner"></div>
-      </div>
-    </nav>
-    <script>
-      portfolio1.onclick= function(){
-        portfolioBar.className = 'bar state-1'
-      }
-      portfolio2.onclick= function(){
-        portfolioBar.className = 'bar state-2'
-      }
-      portfolio3.onclick= function(){
-        portfolioBar.className = 'bar state-3'
-      }
-    </script>
+      <section data-x class="portfolio" id="works">
+        <h2>作品</h2>
+        <!-- 这就是 view , 用户看得见的东西-->
+        <!-- Slider main container -->
+        <div id="mySlides">
+          <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <img src="./images/works/nav-page-2.png" class="swiper-slide">
+              <img src="./images/works/canvas.jpg" class="swiper-slide">
+              <img src="./images/works/apple-style-slides.jpg" class="swiper-slide">
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
 
+            <!-- If we need navigation buttons -->
+          </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </section>
 
-    <div class="works" style="height: 597px;">
-      <div class="big" style="top: 0; left: 0;">
-        <img src="./img/1.jpg" alt="作品1">
-      </div>
-      <div class="small" style="top: 0; left: 645px;">
-        <img src="./img/2.jpg" alt="作品2">
-      </div>
-      <div class="small" style="top: 312px; left: 645px;">
-        <img src="./img/3.jpg" alt="作品3">
-      </div>
-    </div>
-
-  </section>
+      <section class="message">
+        <h2>留言</h2>
+        <ol id="messageList">
+        </ol>
+        <form id="postMessageForm" style="width: 700px; margin: 50px auto;">
+          <label for="">姓名</label>
+          <input type="text" name="name">
+          <label for="">内容</label>
+          <input type="text" name="content">
+          <input type="submit" value="提交">
+        </form>
+      </section>
 
     </main>
     <script type="text/javascript">
@@ -263,8 +247,16 @@
               // console.log(element);
           }
       }
-
-
     </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.1.1/Tween.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/js/swiper.min.js"></script>
+  <script src="//cdn1.lncld.net/static/js/3.5.0/av-min.js"></script>
+  <!-- 模块化 -->
+  <script src="./js/init-swiper.js"></script>
+  <script src="./js/auto-slide-up.js"></script>
+  <script src="./js/sticky-topbar.js"></script>
+  <script src="./js/smoothly-navigation.js"></script>
+  <script src="./js/message.js"></script>
   </body>
 </html>
